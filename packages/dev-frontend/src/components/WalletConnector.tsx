@@ -9,7 +9,7 @@ import { useAuthorizedConnection } from "../hooks/useAuthorizedConnection";
 import { RetryDialog } from "./RetryDialog";
 import { ConnectionConfirmationDialog } from "./ConnectionConfirmationDialog";
 import { MetaMaskIcon } from "./MetaMaskIcon";
-import { TallyIcon } from "./TalalyIcon";
+import { TallyIcon } from "./TallyIcon";
 import { Icon } from "./Icon";
 import { Modal } from "./Modal";
 
