@@ -1,6 +1,6 @@
 import React from "react";
 import { Web3ReactProvider } from "@web3-react/core";
-import { Flex, Spinner, Heading, ThemeProvider, Paragraph, Link } from "theme-ui";
+import {  Flex, Spinner, Heading, ThemeProvider, Paragraph, Link, Card } from "theme-ui";
 
 import { BatchedWebSocketAugmentedWeb3Provider } from "@liquity/providers";
 import { LiquityProvider } from "./hooks/LiquityContext";
@@ -14,7 +14,7 @@ import { DisposableWalletProvider } from "./testUtils/DisposableWalletProvider";
 import { LiquityFrontend } from "./LiquityFrontend";
 
 if (window.ethereum) {
-  // Silence MetaMask warning in console
+  // Silence MetaMask and Tally warning in console
   Object.assign(window.ethereum, { autoRefreshOnNetworkChange: false });
 }
 
@@ -99,17 +99,19 @@ const App = () => {
   return (
     <EthersWeb3ReactProvider>
       <ThemeProvider theme={theme}>
-        <WalletConnector loader={loader}>
-          <LiquityProvider
-            loader={loader}
-            unsupportedNetworkFallback={unsupportedNetworkFallback}
-            unsupportedMainnetFallback={<UnsupportedMainnetFallback />}
-          >
-            <TransactionProvider>
-              <LiquityFrontend loader={loader} />
-            </TransactionProvider>
-          </LiquityProvider>
-        </WalletConnector>
+        <Flex sx={{  height: "100vh", justifyContent: "center", alignItems: "center" }}>
+          <WalletConnector loader={loader}>
+            <LiquityProvider
+              loader={loader}
+              unsupportedNetworkFallback={unsupportedNetworkFallback}
+              unsupportedMainnetFallback={<UnsupportedMainnetFallback />}
+            >
+              <TransactionProvider>
+                <LiquityFrontend loader={loader} />
+              </TransactionProvider>
+            </LiquityProvider>
+          </WalletConnector>
+        </Flex>  
       </ThemeProvider>
     </EthersWeb3ReactProvider>
   );

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useWeb3React } from "@web3-react/core";
 
-import { injectedConnector } from "../connectors/injectedConnector";
+import { injectedMetaMaskProvider, injectedTallyProvider } from "../connectors/connectors";
 
 /**
  * React hook that tries to activate the InjectedConnector if the app's already authorized in the
@@ -21,9 +21,12 @@ export function useAuthorizedConnection(): boolean {
   useEffect(() => {
     const tryToActivateIfAuthorized = async () => {
       try {
-        if (await injectedConnector.isAuthorized()) {
-          await activate(injectedConnector, undefined, true);
-        } else {
+        if (await injectedTallyProvider.isAuthorized()) {
+          await activate(injectedTallyProvider, undefined, true);
+        } else if (await injectedMetaMaskProvider.isAuthorized())  {
+          await activate(injectedMetaMaskProvider, undefined, true);
+        } else
+        {
           throw new Error("Unauthorized");
         }
       } catch {
