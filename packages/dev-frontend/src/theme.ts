@@ -332,10 +332,10 @@ const theme: Theme = {
   layout: {
     header: {
       display: "flex",
-      justifyContent: "space-between",
-      alignItems: "stretch",
+      position: "fixed",
+      justifyContent: "center",
 
-      position: ["fixed", "relative"],
+
       width: "100vw",
       top: 0,
       zIndex: 1,
@@ -360,12 +360,16 @@ const theme: Theme = {
     },
 
     main: {
+      display: "flex",
+      alignSelf: "center",
       width: "100%",
       maxWidth: "912px",
       mx: "auto",
-      mt: ["40px", 0],
+      top: "70px",
+      position: "absolute",
       mb: ["40px", "40px"],
       px: cardGapX
+
     },
 
     columns: {
